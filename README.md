@@ -1,7 +1,5 @@
 # Laravel & Vue.js Booking Service
 
-![](Architecture.png)
-
 This project was developed when I learned how to build a Single Page Application with Laravel PHP Framework and Vue.js by instructor Piotr Jura.
 
 ## Install all dependencies and migrate database
