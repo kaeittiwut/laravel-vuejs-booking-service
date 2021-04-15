@@ -28,6 +28,44 @@ $ npm run watch
 $ php artisan serve
 ```
 
+## Running Migrations
+
+Run all of your outstanding migrations with seeder:
+
+```bash
+$ php artisan migrate --seed
+```
+
+If you would like to see which migrations have run thus far:
+
+```bash
+$ php artisan migrate:status
+```
+
+Roll back the latest migration operation. This command will rolls back the last "batch" of migrations, which may include multiple migration files:
+
+```bash
+$ php artisan migrate:rollback
+```
+
+Roll back all of your application's migrations:
+
+```bash
+$ php artisan migrate:reset
+```
+
+If you want to drop all table before seeding, you can use this command:
+
+```bash
+$ php artisan migrate:fresh --seed
+```
+
+## Laravel Debugbar
+
+This development uses [Laravel Debugbar](https://github.com/barryvdh/laravel-debugbar) for easier testing and debugging.
+
+Note: Use the DebugBar only in development. It can slow the application down (because it has to gather data). So when experiencing slowness, try disabling some of the collectors.
+
 ## Laravel framework
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
