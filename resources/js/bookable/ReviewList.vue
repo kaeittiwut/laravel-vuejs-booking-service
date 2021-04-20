@@ -15,9 +15,7 @@
                     <div class="col-md-6">Example user1</div>
                     <div class="col-md-6 d-flex justify-content-end">
                         Star Rating: {{ review.rating }}
-                        <star-rating
-                            v-bind:rating="review.rating"
-                        ></star-rating>
+                        <star-rating v-bind:value="review.rating"></star-rating>
                     </div>
                 </div>
                 <div class="row">
