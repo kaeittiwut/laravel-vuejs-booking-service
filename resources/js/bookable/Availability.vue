@@ -2,10 +2,14 @@
     <div>
         <h6 class="text-uppercase text-secondary font-weight-bolder">
             Check Availability
-            <span v-if="noAvailability" class="text-danger"
-                >(NOT AVAILABLE)</span
-            >
-            <span v-if="hasAvailability" class="text-success">(AVAILABLE)</span>
+            <transition name="fade">
+                <span v-if="noAvailability" class="text-danger"
+                    >(NOT AVAILABLE)</span
+                >
+                <span v-if="hasAvailability" class="text-success"
+                    >(AVAILABLE)</span
+                >
+            </transition>
         </h6>
 
         <div class="form-row">
@@ -42,7 +46,10 @@
             v-on:click="check"
             v-bind:disabled="loading"
         >
-            Check!
+            <span v-if="!loading">Check!</span>
+            <span v-if="loading">
+                <i class="fas fa-circle-notch fa-spin"></i> Checking...
+            </span>
         </button>
     </div>
 </template>
@@ -65,7 +72,7 @@ export default {
         };
     },
     methods: {
-        check() {
+        async check() {
             this.loading = true;
             this.errors = null;
 
@@ -74,6 +81,26 @@ export default {
                 to: this.to
             });
 
+            // async/await version
+            try {
+                this.status = (
+                    await axios.get(
+                        `/api/bookables/${this.bookableId}/availability?from=${this.from}&to=${this.to}`
+                    )
+                ).status;
+                this.$emit("availability", this.hasAvailability);
+            } catch (err) {
+                if (is422(err)) {
+                    this.errors = err.response.data.errors;
+                }
+                this.status = err.response.status;
+                this.$emit("availability", this.hasAvailability);
+            }
+
+            this.loading = false;
+
+            // change this promise version to above async/await version
+            /*
             axios
                 .get(
                     `/api/bookables/${this.bookableId}/availability?from=${this.from}&to=${this.to}`
@@ -88,6 +115,7 @@ export default {
                     this.status = error.response.status;
                 })
                 .then(() => (this.loading = false));
+                */
         }
     },
     computed: {

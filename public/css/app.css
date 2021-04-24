@@ -16114,3 +16114,11 @@ h3 {
     border-color: #dee2e6;
   }
 }
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
