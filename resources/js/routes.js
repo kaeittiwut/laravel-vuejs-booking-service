@@ -2,7 +2,7 @@ import VueRouter from "vue-router";
 import Bookables from "./bookables/Bookables";
 import Bookable from "./bookable/Bookable";
 import Review from "./review/Review";
-import Basket from "./basket/Basket.vue";
+import Basket from "./basket/Basket";
 
 const routes = [
     {
@@ -24,6 +24,17 @@ const routes = [
         path: "/basket",
         component: Basket,
         name: "basket"
+    },
+    {
+        path: "/auth/login",
+        /*another  way to import Login.vue like above */
+        component: require("./auth/Login").default,
+        name: "login"
+    },
+    {
+        path: "/auth/register",
+        component: require("./auth/Register").default,
+        name: "register"
     }
 ];
 
