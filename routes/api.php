@@ -7,7 +7,6 @@ use App\Http\Controllers\Api\BookableReviewController;
 use App\Http\Controllers\Api\BookingByReviewController;
 use App\Http\Controllers\Api\CheckoutController;
 use App\Http\Controllers\Api\ReviewController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,10 +19,6 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
  */
-
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
 
 // Route::get('bookables', [BookableController::class, 'index']);
 // Route::get('bookables/{id}', [BookableController::class, 'show']);
